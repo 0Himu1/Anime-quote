@@ -19,7 +19,7 @@ const errorState = {
 };
 
 const mostWatchedAnime = [
-  'Demon Slayer: Kimetsu no Yaiba',
+  'Demon Slayer',
   'Attack on Titan',
   'Naruto',
   'One Piece',
@@ -41,12 +41,14 @@ const mostWatchedAnime = [
   'The Promised Neverland',
 ];
 
-function QuoteCard() {
+function QuoteCard({ setDarkMode, darkMode }) {
   const [quote, setQuote] = useState({});
   const [animes] = useState(mostWatchedAnime);
   // eslint-disable-next-line no-unused-vars
   const [currentAnime, setCurrentAnime] = useState('Naruto');
-  const [url, setUrl] = useState('https://animechan.vercel.app/api/random/anime?title=naruto');
+  const [url, setUrl] = useState(
+    'https://animechan.vercel.app/api/random/anime?title=naruto',
+  );
 
   useEffect(() => {
     setQuote(loadingState);
@@ -82,10 +84,10 @@ function QuoteCard() {
   };
 
   return (
-    <div className="lg:flex gap-10">
+    <div className="lg:flex justify-center items-center gap-10">
       <div className="bg-white dark:bg-slate-800 dark:text-white flex flex-col items-center p-10 w-96 rounded-md mb-20">
         <div className="text-center mb-10">
-          <FaQuoteLeft className="text-5xl mb-10 mx-auto duration-300" />
+          <FaQuoteLeft className="text-5xl mb-10 mx-auto duration-300" onClick={() => setDarkMode(!darkMode)} />
           <h1 className="font-bold text-xl mb-10 duration-300">
             {quote.quote}
           </h1>
